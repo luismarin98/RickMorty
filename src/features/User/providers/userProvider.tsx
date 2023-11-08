@@ -10,16 +10,16 @@ import useUsuarios from "../hooks/useUsuario";
 
 export interface IUsuariosContext {
     loading: boolean;
-    setIsLoading: Dispatch<SetStateAction<boolean>>
+    setIsLoading: Dispatch<SetStateAction<boolean>>;
     usuariosList: UserRequest[];
     searchUsuarios: () => void;
-}
+  }
 
 const UsuariosContext = createContext({});
 
 export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
-    const { usuarios, getUsuarios } = useUsuarios();
     const [load, setLoad] = useState(true);
+    const { usuarios, getUsuarios } = useUsuarios();
 
     const storage: IUsuariosContext = {
         loading: load,
