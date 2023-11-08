@@ -21,6 +21,7 @@ const useUsuarios = () => {
     }
 
     const searchUser = async (id_user: string) => {
+        //debugger
         const response = await axios.get(`http://localhost:3000/users/${id_user}`);//Busco usuario por id
         const data = response.data;
         if (!data) return null;
