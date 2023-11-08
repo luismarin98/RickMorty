@@ -43,7 +43,7 @@ export const UserForm: FC = () => {
             <button
                 title="boton"
                 onClick={toggleModalSave}
-                className="border  rounded-sm p-2 m-2 bg-blue-400 "
+                className="border rounded-sm p-2 m-2 bg-blue-400 "
             >Nuevo Usuario</button>
         </div>
     </div>
