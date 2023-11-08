@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import { ModalInsert } from '../domain/modalAction';
+import { ModalInsertRequest } from '../domain/modalAction';
 
-const ModalInsert: React.FC<ModalInsert> = ({ title, children, isOpen, onClose }) => {
+const ModalInsert: React.FC<ModalInsertRequest> = ({ title, children, isOpen, onClose }) => {
     return <Transition appear show={isOpen} as={Fragment}>
         <Dialog as='div' className='relative z-10' onClose={onClose}>
             <Transition.Child

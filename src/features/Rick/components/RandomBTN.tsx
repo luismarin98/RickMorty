@@ -15,14 +15,10 @@ const BtnHook: FC = () => {
     console.log("Hola mundo");
   };
 
-  return (
-    <button
-      className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200"
-      onClick={handleEventBtn}
-    >
-      Random ID
-    </button>
-  );
+  return <button
+    className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200"
+    onClick={handleEventBtn}
+  >Random ID</button>
 };
 
 export default BtnHook;

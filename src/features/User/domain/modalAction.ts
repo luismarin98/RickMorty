@@ -1,4 +1,4 @@
-export interface ModalInsert {
+export interface ModalInsertRequest {
     title: string;
     children: JSX.Element;
     isOpen: boolean;
