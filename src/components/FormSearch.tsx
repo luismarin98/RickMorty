@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import { CharacterResponse } from "../request/characterResponse";
 import SearchContext, { ISearchContext } from "../providers/searchProviders";
-import BtnHook from "./button";
+import BtnHook from "./RandomBTN";
 
 const FormSearchCharacter: FC = () => {
   const { getValues } = useFormContext<CharacterResponse>();
