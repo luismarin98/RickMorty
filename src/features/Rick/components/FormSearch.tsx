@@ -16,7 +16,7 @@ const FormSearchCharacter: FC = () => {
   };
 
   return (
-    <div className="container flex flex-row shadow-sm shadow-slate-600 gap-1 p-2 rounded-md dark:bg-slate-800  justify-center">
+    <div className="container flex flex-row shadow-sm shadow-slate-600 gap-1 p-2 rounded-md bg-stone-100 dark:bg-slate-800  justify-center">
       <input className="border-solid text-center border-spacing-1 rounded-sm" type="text" {...register("id")} />
       <button className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200" onClick={handleSearchID}>Buscar</button>
       <BtnHook />

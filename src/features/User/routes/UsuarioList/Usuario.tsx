@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { UserRequest } from './domain/userRequest';
-import { UserForm } from './components/userForm';
-import CardUsers from './components/usersList';
+import { UserRequest } from '../../domain/userRequest';
+import { UserForm } from '../../components/userForm';
+import CardUsers from '../../components/usersList';
 
 export const Usuarios: FC = () => {
     const initialStateForm: UserRequest = { id: '', nombre: '', apellido: '' };
@@ -10,7 +10,7 @@ export const Usuarios: FC = () => {
     const methods = useForm<UserRequest>({ defaultValues: initialStateForm });
 
     return <FormProvider {...methods}>
-        <div>
+        <div className='container flex flex-col gap-2'>
             <UserForm />
             <CardUsers />
         </div>
