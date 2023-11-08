@@ -3,6 +3,7 @@ import { UserRequest } from '../domain/userRequest';
 import { useFormContext } from 'react-hook-form';
 import UsuariosContext, { IUsuariosContext } from '../providers/userProvider';
 import InputText from './inputText';
+import OpenModal from './openBtnModal';
 
 export const UserForm: FC = () => {
     const { getSearch } = useContext(UsuariosContext) as IUsuariosContext;
@@ -18,6 +19,7 @@ export const UserForm: FC = () => {
         <div className="container flex flex-row shadow-sm shadow-slate-600 gap-1 p-2 rounded-md bg-stone-100 dark:bg-slate-800  justify-center">
             <InputText name='id' title={'Ingresa el id del usuario'} />
             <button className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200" onClick={handleUser}>Buscar</button>
+            <OpenModal />
         </div>
     </div>
 }

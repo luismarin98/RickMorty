@@ -10,7 +10,7 @@ export const Usuarios: FC = () => {
     const methods = useForm<UserRequest>({ defaultValues: initialStateForm });
 
     return <FormProvider {...methods}>
-        <div className='container flex flex-col gap-2 items-center'>
+        <div className='container flex flex-col gap-2 items-center m-2'>
             <UserForm />
             <CardUsers />
         </div>
