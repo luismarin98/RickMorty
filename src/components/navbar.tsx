@@ -2,26 +2,24 @@ import { Link } from 'react-router-dom';
 
 const routes = [
     {
-        name: 'Home',
-        path: '/'
+        path: '/name-character',
+        name: 'Nombres',
     },
     {
-        name: 'Personajes',
-        path: '/all-characters',
-    },
-    {
+        path: '/id-character',
         name: 'ID',
-        path: '/id-characters',
-    }
-]
+    },
+    {
+        path: '/all-character',
+        name: 'Todos los Personajes',
+    },
+];
 
 export default function Navbar() {
-    return <nav className="flex justify-around p-1 bg-slate-200">
-        <Link className='hover:bg-slate-400 rounded-lg p-1' to='/'>Test Rick</Link>
-        <ul className="flex flex-row gap-1">
-            {
-                routes.map((data) => <li className='hover:bg-slate-400 rounded-lg p-1' key={data.name}><Link  to={data.path}>{data.name}</Link></li>)
-            }
+    return <nav className='flex gap-1 items-center justify-around bg-slate-200'>
+        <Link to='/'>Rick Morty</Link>
+        <ul className='flex gap-4 p-2'>
+            {routes.map((data) => <li key={data.name} ><Link className='hover:bg-slate-300 p-1 rounded-sm px-4' to={data.path}>{data.name}</Link></li>)}
         </ul>
     </nav>
 }

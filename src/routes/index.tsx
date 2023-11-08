@@ -1,4 +1,5 @@
-import All_Characters from "./All_Characters";
-import ID_Character from "./ID_Character";
+import AllCharacters from "./All_Characters";
+import IDCharacter from "./Id_Search";
+import NameCharacter from "./Name_Character";
 
-export { All_Characters, ID_Character }
+export { AllCharacters, IDCharacter, NameCharacter }
