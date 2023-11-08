@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import FormNameSearch from '../../components/FormNameSearch';
-import { SearchProvider } from '../../providers/searchProviders';
-import { CharacterName } from '../../request/characterResponse';
+import FormNameSearch from '../../features/Rick/components/FormNameSearch';
+import { SearchProvider } from '../../features/Rick/providers/searchProviders';
+import { CharacterName } from '../../features/Rick/request/characterResponse';
 import { FormProvider, useForm } from 'react-hook-form';
-import ArraySearchCharacter from '../../components/CardSearchName';
+import ArraySearchCharacter from '../../features/Rick/components/CardSearchName';
 
 const NameCharacter: FC = () => {
     const initialSateForm: CharacterName = { NAME: "" };

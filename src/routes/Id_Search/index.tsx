@@ -1,9 +1,9 @@
 import { FC } from "react";
-import OneCharacter from "../../components/CardCharacter";
-import FormSearchCharacter from "../../components/FormSearch";
-import { SearchProvider } from "../../providers/searchProviders";
-import { CharacterID } from "../../request/characterResponse";
+import FormSearchCharacter from "../../features/Rick/components/FormSearch";
+import { SearchProvider } from "../../features/Rick/providers/searchProviders";
+import { CharacterID } from "../../features/Rick/request/characterResponse";
 import { FormProvider, useForm } from "react-hook-form";
+import OneCharacter from "../../features/Rick/components/CardCharacter";
 
 const IDCharacter: FC = () => {
   const initialStateForm: CharacterID = { ID: "" };

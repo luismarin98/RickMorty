@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import CardCharater from '../../components/CardAllCharacter';
-import { CharacterProvider } from '../../providers/charactersProvider';
+import CardCharater from '../../features/Rick/components/CardAllCharacter';
+import { CharacterProvider } from '../../features/Rick/providers/charactersProvider';
 
 const AllCharacters: FC = () => {
     return <div>
