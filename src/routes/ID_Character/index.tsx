@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { CharacterInfo } from '../../domain/CharacterResponse';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 
 export default function ID_Character() {
     const [chInfo, setChInfo] = useState<CharacterInfo>();
@@ -13,6 +13,8 @@ export default function ID_Character() {
             setChInfo(response.data);
         });
     }
+
+    useEffect(() => { document.title = 'Busqueda por ID' }, [])
 
     return <div className='flex flex-col gap-2 justify-center items-center'>
         <form>
