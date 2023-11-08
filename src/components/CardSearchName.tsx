@@ -8,7 +8,7 @@ const ArraySearchCharacter: FC = () => {
 
     return <div className='grid gap-4 grid-cols-3 grid-rows-3 m-5'>
         {
-            infoList.map((data) => <div key={data.name} className='flex p-2 flex-row items-center gap-2 shadow-lg shadow-stone-300 rounded-lg'>
+            infoList.map((data) => <div key={data.name} className='flex p-2 flex-row items-center gap-2 shadow-lg shadow-stone-500 rounded-lg'>
                 <img src={data?.image} alt={data?.name} width={100} className='rounded-lg' />
                 <div>
                     <p><strong>Nombre:</strong> {data?.name}</p>

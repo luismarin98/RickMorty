@@ -2,7 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AllCharacters, IDCharacter, NameCharacter } from './routes';
+import { AllCharacters, IDCharacter, NameCharacter, Users, } from './routes';
 import Navbar from './components/Navbar';
 
 createRoot(document.getElementById('root')!).render(
@@ -13,7 +13,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/name-character' element={<NameCharacter />} />
         <Route path='/all-character' element={<AllCharacters />} />
         <Route path='/id-character' element={<IDCharacter />} />
+        <Route path='/users' element={<Users />} />
       </Routes>
     </Router>
   </React.StrictMode>,
 )
+

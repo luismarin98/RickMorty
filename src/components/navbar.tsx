@@ -13,12 +13,16 @@ const routes = [
         path: '/all-character',
         name: 'Todos los Personajes',
     },
+    {
+        path: '/users',
+        name: 'Usuarios',
+    },
 ];
 
 export default function Navbar() {
     return <nav className='flex gap-1 items-center justify-around bg-slate-200'>
         <Link to='/'>Rick Morty</Link>
-        <ul className='flex gap-4 p-2'>
+        <ul className='flex gap-1 p-2'>
             {routes.map((data) => <li key={data.name} ><Link className='hover:bg-slate-300 p-1 rounded-sm px-4' to={data.path}>{data.name}</Link></li>)}
         </ul>
     </nav>
