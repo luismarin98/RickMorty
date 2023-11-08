@@ -9,3 +9,7 @@ export interface CharacterResponse {
 export interface CharacterID {
   ID: string;
 }
+
+export interface CharacterName {
+  NAME: string;
+}
