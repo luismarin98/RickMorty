@@ -2,7 +2,9 @@ import { createContext, ReactNode } from 'react';
 import { CharacterResponse } from '../request/characterResponse';
 import useGetCharacters from '../hooks/useCharacters';
 
-export interface ICharacterContext { character: CharacterResponse[] | undefined }
+export interface ICharacterContext { 
+    character: CharacterResponse[] | undefined;
+}
 
 const CharacterContext = createContext({});
 

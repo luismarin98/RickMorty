@@ -1,36 +1,27 @@
-import {
-    ReactNode,
-    createContext,
-    useState,
-    Dispatch,
-    SetStateAction,
-} from "react";
+import { ReactNode, createContext, /*useState, Dispatch, SetStateAction*/ } from 'react';
 import { UserRequest } from "../domain/userRequest";
 import useUsuarios from "../hooks/useUsuario";
 
 export interface IUsuariosContext {
-    loading: boolean;
-    setIsLoading: Dispatch<SetStateAction<boolean>>;
-    usuariosList: UserRequest[];
-    searchUsuarios: () => void;
-  }
+    usuariosList: UserRequest[] | undefined;//Obtiene la lista de usuarios    
+    userData: UserRequest | undefined;//Obtiene solo un usuario
+    getUsers: () => void;//Obtiene el array de los usuarios
+    getSearch: (id_user: string) => void;//Funcion de la busqueda por id
+}
 
 const UsuariosContext = createContext({});
 
 export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
-    const [load, setLoad] = useState(true);
-    const { usuarios, getUsuarios } = useUsuarios();
+    const { usuarios, getUsuarios, user, searchUser } = useUsuarios();
 
     const storage: IUsuariosContext = {
-        loading: load,
-        setIsLoading: setLoad,
         usuariosList: usuarios,
-        searchUsuarios: getUsuarios,
+        userData: user,
+        getUsers: getUsuarios,
+        getSearch: searchUser,
     };
 
-    return <UsuariosContext.Provider value={storage}>
-        {children}
-    </UsuariosContext.Provider>
+    return <UsuariosContext.Provider value={storage}>{children}</UsuariosContext.Provider>
 }
 
 export default UsuariosContext;

@@ -21,9 +21,8 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     getName: getNameCharacter,
   };
 
-  return (
-    <SearchContext.Provider value={storage}>{children}</SearchContext.Provider>
-  );
+  return <SearchContext.Provider value={storage}>{children}</SearchContext.Provider>
+
 };
 
 export default SearchContext;
