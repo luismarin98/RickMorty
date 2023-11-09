@@ -17,7 +17,7 @@ const BtnHook: FC = () => {
 
   return (
     <button
-      className="p-1 hover:bg-slate-400 rounded-sm w-32"
+      className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200"
       onClick={handleEventBtn}
     >
       Random ID

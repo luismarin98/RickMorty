@@ -15,9 +15,9 @@ const FormNameSearch: FC = () => {
     }
 
     return (
-        <div className="container flex flex-row shadow-sm shadow-slate-600 gap-1 p-2 rounded-md">
-            <input className="border-solid bg-slate-100 text-center" type="text" {...register("name")} />
-            <button className="p-1 hover:bg-slate-400 rounded-sm w-32" onClick={handleSearchName}>Buscar</button>
+        <div className="container flex flex-row shadow-sm shadow-slate-600 gap-1 p-2 rounded-md dark:bg-slate-800  justify-center">
+            <input className="border-solid text-center border-spacing-1 rounded-sm" type="text" {...register("name")} />
+            <button className="p-1 hover:bg-slate-400 rounded-sm w-32 dark:bg-slate-200" onClick={handleSearchName}>Buscar</button>
         </div>
     );
 }

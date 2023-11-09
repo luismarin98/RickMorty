@@ -11,10 +11,10 @@ const NameCharacter: FC = () => {
     const method = useForm<CharacterName>({ defaultValues: initialSateForm });
 
     return (<div className='flex flex-col gap-1 items-center justify-center'>
-        <h2>Obtener Personajes por nombres</h2>
+        <h1 className='text-2xl'>Obtener Personajes por nombres</h1>
         <SearchProvider>
             <FormProvider {...method}>
-                <div className='flex flex-col gap-1'>
+                <div className='flex flex-col gap-1 justify-center items-center'>
                     <FormNameSearch />
                     <ArraySearchCharacter />
                 </div>

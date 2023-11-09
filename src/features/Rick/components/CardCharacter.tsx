@@ -7,7 +7,7 @@ const OneCharacter: FC = () => {
   if (!info) return null;
 
   return (
-    <div className="flex flex-row items-center w-auto gap-1 p-1 shadow-sm shadow-black rounded-sm">
+    <div className="flex p-2 flex-row items-center gap-2 shadow-lg shadow-stone-500 rounded-lg dark:bg-slate-800 dark:text-white">
       <img
         src={info?.image}
         alt={info?.name}
