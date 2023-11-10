@@ -49,6 +49,8 @@ export interface IUsuariosContext {
   setToDateNow: Dispatch<SetStateAction<string | null>>;
   rangeUsers: UserRequest[] | undefined;
   runFilter: () => void;
+  dateNowStatus: boolean | null;
+  setDateNowStatus: (param: boolean | null) => void;
 }
 
 const UsuariosContext = createContext({});
@@ -59,7 +61,7 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
   const { deleteUser } = useDeleteUser();
   const { editUser, setDataEdit } = useEditUser();
   const { saveUser, setDataSave } = useSaveUser();
-  const { dateNow, setDateNow, rangeUsers, runFilter } = useFilterDate();
+  const { dateNow, setDateNow, rangeUsers, runFilter, dateNowStatus, setDateNowStatus } = useFilterDate();
 
   const [statusDate, setStatusDate] = useState(false);
   const [userModal, setUserModal] = useState(false);
@@ -93,7 +95,9 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
     statusDate,
     setStatusDate,
     rangeUsers,
-    runFilter
+    runFilter,
+    dateNowStatus,
+    setDateNowStatus
   };
 
   return (

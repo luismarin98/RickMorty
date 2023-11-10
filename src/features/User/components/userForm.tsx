@@ -47,7 +47,7 @@ export const UserForm: FC = () => {
   return (
     <div className="flex flex-col shadow-sm shadow-slate-600 gap-1 p-2 rounded-md bg-stone-100 justify-center dark:bg-gray-600">
       <div className="flex justify-center items-center gap-1 tablet:flex-col laptop:flex-row sm:flex-col">
-        <div className="flex tablet:flex-col laptop:flex-row desktop:flex-row lg:flex-row lg:gap-2">
+        <div className="flex tablet:flex-col laptop:flex-row desktop:flex-row lg:flex-row lg:gap-2 laptop:gap-2 tablet:gap-2">
           <button
             onClick={toggleModal}
             className="border rounded-lg p-2 bg-blue-300 hover:bg-blue-400 dark:bg-slate-200 dark:hover:bg-slate-300"

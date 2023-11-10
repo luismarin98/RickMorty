@@ -1,4 +1,4 @@
-import { FC, useContext, ChangeEvent } from "react";
+import { FC, useContext, ChangeEvent, MouseEvent } from "react";
 import UsuariosContext, {
   IUsuariosContext,
 } from "../../providers/userProvider";
@@ -9,13 +9,14 @@ export const DateModalChild: FC = () => {
     UsuariosContext
   ) as IUsuariosContext;
 
-  const today = new Date();
-  const date = today.setDate(today.getDate());
-  const defaultValue = new Date(date).toISOString().split("T")[0];
-
   const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
     const getDate = moment(event.target.value).format("DD/MM/YYYY");
     setDateNow(getDate);
+  };
+
+  const handleBtn = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    runFilter();
   };
 
   return (
@@ -26,11 +27,15 @@ export const DateModalChild: FC = () => {
           id="dateRequired"
           type="date"
           name="dateRequired"
-          defaultValue={defaultValue}
+          defaultValue=""
           onChange={handleDate}
+          required
         />
       </label>
-      <button onClick={runFilter} className="flex items-center justify-center p-2 focus:shadow-inner rounded-lg">
+      <button
+        onClick={handleBtn}
+        className="flex items-center justify-center p-2 focus:shadow-inner rounded-lg"
+      >
         <span className="material-symbols-outlined">search</span>
       </button>
     </div>
