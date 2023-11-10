@@ -2,6 +2,7 @@ import { FC, useContext } from "react";
 import UsuariosContext, { IUsuariosContext } from "../providers/userProvider";
 import { UserRequest } from "../domain/userRequest";
 import { useFormContext } from "react-hook-form";
+import moment from 'moment';
 
 const TableList: FC = () => {
   const {
@@ -48,14 +49,14 @@ const TableList: FC = () => {
         </thead>
         <tbody>
           {usuariosList
-            .filter((data) => (statusFilter === true ? data.status === true : statusFilter === false ? data.status === false : data.status === true || data.status === false) || (dateNow === data.fecha))
+            .filter((data) => (statusFilter === true ? data.status === true : statusFilter === false ? data.status === false : data.status === true || data.status === false) || (moment(data.fecha.toUTCString()).format('DD/MM/YYYY') === dateNow))
             .map((data) => (
               <tr key={data.id} className="border-2 border-solid rounded-sm">
                 <th className="border border-1 border-solid">{data.id}</th>
                 <th className="border border-1 border-solid">{data.nombre}</th>
                 <th className="border border-1 border-solid">{data.apellido}</th>
                 <th className="border border-1 border-solid">{data.status ? "Activo" : "Inactivo"}</th>
-                <th className="border border-1 border-solid">{data.fecha}</th>
+                <th className="border border-1 border-solid">{data.fecha.toString()}</th>
                 <th className="flex gap-1 justify-center">
                   <button
                     className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-red-600"

@@ -45,6 +45,7 @@ export const EditUser: FC = () => {
           <input
             className="border-solid rounded-lg text-center border-spacing-1 bg-slate-300"
             type="text"
+            disabled
             {...register("id")}
           />
         </label>
