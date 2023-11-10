@@ -3,17 +3,17 @@ import { UserRequest } from "../../domain/userRequest";
 import axios from "axios";
 
 const useEditUser = () => {
-  const [data, setData] = useState<UserRequest>();
+  const [data, setDataEdit] = useState<UserRequest>();
 
-  const editUser = async (param: UserRequest) => {
-    await axios.put(`http://localhost:3000/users/${data?.id}`, { ...param }).then((res) => {
+  const editUser = async () => {
+    await axios.put(`http://localhost:3000/users/${data?.id}`, { ...data }).then((res) => {
       if (res.status === 200) return alert('Usuario editado con exito');
     }).catch((err) => {
       console.error(err);
     });
   };
 
-  return { editUser, setData };
+  return { editUser, setDataEdit };
 };
 
 export default useEditUser;

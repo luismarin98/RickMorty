@@ -3,12 +3,20 @@ import UsuariosContext, { IUsuariosContext } from "../providers/userProvider";
 import ModalInsert from "./modalInsert";
 import { EditUser } from "./modalComponent/editUser";
 import { NewUser } from "./modalComponent/newUser";
+import { useFormContext } from "react-hook-form";
+import { UserRequest } from "../domain/userRequest";
 
 export const UserForm: FC = () => {
-  const { getUsers, userModal, setUserModal, statusEdit } = useContext(UsuariosContext) as IUsuariosContext;
+  const { getUsers, userModal, setUserModal, statusEdit, setStatusEdit } =
+    useContext(UsuariosContext) as IUsuariosContext;
+  const { reset } = useFormContext<UserRequest>();
 
   const toggleModal = () => {
     setUserModal(!userModal);
+    reset();
+    if (statusEdit) {
+      setStatusEdit(false);
+    }
   };
 
   return (
@@ -28,14 +36,8 @@ export const UserForm: FC = () => {
         </button>
       </div>
 
-      <ModalInsert
-        isOpen={userModal}
-        onClose={toggleModal}
-        title={'Usuario'}
-      >
-        {
-          statusEdit ? <EditUser /> : <NewUser />
-        }
+      <ModalInsert isOpen={userModal} onClose={toggleModal} title={"Usuario"}>
+        {statusEdit ? <EditUser /> : <NewUser />}
       </ModalInsert>
     </div>
   );

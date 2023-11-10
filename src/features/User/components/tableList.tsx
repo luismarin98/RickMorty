@@ -10,17 +10,21 @@ const TableList: FC = () => {
     getUsers,
     userModal,
     setUserModal,
-    editUser,
+    setStatusEdit,
   } = useContext(UsuariosContext) as IUsuariosContext;
 
-  const { reset } = useFormContext<UserRequest>();
+  const { setValue } = useFormContext<UserRequest>();
 
   if (!usuariosList) return <div>Aun no hay datos en la base de datos</div>;
 
   const handleEdit = (params: UserRequest) => {
     setUserModal(!userModal);
-    editUser(params);
-    reset();
+    setValue("id", params.id);
+    setValue("nombre", params.nombre);
+    setValue("apellido", params.apellido);
+    setStatusEdit(true);
+    //setIdUser(params.id);
+    //reset();
   };
 
   const handleDelete = (id: UserRequest) => {

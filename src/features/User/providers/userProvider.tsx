@@ -24,8 +24,8 @@ export interface IUsuariosContext {
   deleteUser: (params: UserRequest) => void;
   userModal: boolean;
   setUserModal: (param: boolean) => void;
-  editUser: (param: UserRequest) => void;
-  setData: (param: UserRequest) => void;
+  editUser: () => void;
+  setDataEdit: (param: UserRequest) => void;
   statusEdit: boolean;
   setStatusEdit: (param: boolean) => void;
   IdUser: string | null;
@@ -38,7 +38,7 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
   const { usuarios, getUsers } = usegetUsers();
   const { user, searchUser } = useSearchUser();
   const { deleteUser } = useDeleteUser();
-  const { editUser, setData } = useEditUser();
+  const { editUser, setDataEdit } = useEditUser();
   const { saveUser, setDataSave } = useSaveUser();
 
   const [userModal, setUserModal] = useState(false);
@@ -50,13 +50,13 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
     getUsers,
     userData: user,
     getSearch: searchUser,
-    saveUser: saveUser,
-    setDataSave: setDataSave,
+    saveUser,
+    setDataSave,
     deleteUser,
     userModal,
     setUserModal,
     editUser,
-    setData,
+    setDataEdit,
     statusEdit,
     setStatusEdit,
     IdUser,
