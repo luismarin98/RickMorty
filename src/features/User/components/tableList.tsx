@@ -2,7 +2,6 @@ import { FC, useContext } from "react";
 import UsuariosContext, { IUsuariosContext } from "../providers/userProvider";
 import { UserRequest } from "../domain/userRequest";
 import { useFormContext } from "react-hook-form";
-import moment from 'moment';
 
 const TableList: FC = () => {
   const {
@@ -13,11 +12,12 @@ const TableList: FC = () => {
     setUserModal,
     setStatusEdit,
     statusFilter,
-    dateNow
+    rangeUsers,
   } = useContext(UsuariosContext) as IUsuariosContext;
 
   const { setValue } = useFormContext<UserRequest>();
 
+  if (!rangeUsers) return <div>Aun no hay datos en la base de datos</div>;
   if (!usuariosList) return <div>Aun no hay datos en la base de datos</div>;
 
   const handleEdit = (params: UserRequest) => {
@@ -35,8 +35,57 @@ const TableList: FC = () => {
   };
 
   return (
-    <div className="flex shadow-sm shadow-slate-600 gap-1 p-2 rounded-md justify-center bg-stone-100 dark:bg-slate-400">
-      <table className="tablet:table-fixed tablet:w-3/5 laptop:table-fixed laptop:w-3/4 desktop:table-fixed desktop:w-5/6">
+    <div className="flex flex-col sm:justify-center sm:items-center lg:items-center laptop:items-center shadow-sm shadow-slate-600 gap-1 p-2 rounded-md justify-center bg-stone-100 dark:bg-slate-400">
+      <h1>Busqueda por fechas</h1>
+      <table className="tablet:table-fixed tablet:w-3/5 laptop:table-fixed laptop:w-5/6 desktop:table-fixed desktop:w-5/6 lg:w-full">
+        <thead>
+          <tr className="bg-slate-300 rounded-t-lg">
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Estado</th>
+            <th>Fecha y hora</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rangeUsers?.map((data) => (
+            <tr key={data.id}>
+              <th className="border border-1 border-solid">{data.id}</th>
+              <th className="border border-1 border-solid">{data.nombre}</th>
+              <th className="border border-1 border-solid">{data.apellido}</th>
+              <th className="border border-1 border-solid">
+                {data.status ? "Activo" : "Inactivo"}
+              </th>
+              <th className="border border-1 border-solid">
+                {data.fecha.toString()}
+              </th>
+              <th className="flex gap-1 justify-center">
+                <button
+                  className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-red-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(data);
+                  }}
+                >
+                  <span className="material-symbols-outlined">delete</span>
+                </button>
+                <button
+                  className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-green-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleEdit(data);
+                  }}
+                >
+                  <span className="material-symbols-outlined">edit</span>
+                </button>
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <h1>Busqueda por consulta</h1>
+      <table className="tablet:table-fixed tablet:w-3/5 laptop:table-fixed laptop:w-5/6 desktop:table-fixed desktop:w-5/6 lg:w-full">
         <thead>
           <tr className="bg-slate-300 rounded-t-lg">
             <th>ID</th>
@@ -49,14 +98,26 @@ const TableList: FC = () => {
         </thead>
         <tbody>
           {usuariosList
-            .filter((data) => (statusFilter === true ? data.status === true : statusFilter === false ? data.status === false : data.status === true || data.status === false) || (moment(data.fecha.toUTCString()).format('DD/MM/YYYY') === dateNow))
+            .filter((data) =>
+              statusFilter === true
+                ? data.status === true
+                : statusFilter === false
+                ? data.status === false
+                : data.status === true || data.status === false
+            )
             .map((data) => (
               <tr key={data.id} className="border-2 border-solid rounded-sm">
                 <th className="border border-1 border-solid">{data.id}</th>
                 <th className="border border-1 border-solid">{data.nombre}</th>
-                <th className="border border-1 border-solid">{data.apellido}</th>
-                <th className="border border-1 border-solid">{data.status ? "Activo" : "Inactivo"}</th>
-                <th className="border border-1 border-solid">{data.fecha.toString()}</th>
+                <th className="border border-1 border-solid">
+                  {data.apellido}
+                </th>
+                <th className="border border-1 border-solid">
+                  {data.status ? "Activo" : "Inactivo"}
+                </th>
+                <th className="border border-1 border-solid">
+                  {data.fecha.toString()}
+                </th>
                 <th className="flex gap-1 justify-center">
                   <button
                     className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-red-600"

@@ -5,7 +5,7 @@ import { EditUser } from "./modalComponent/editUser";
 import { NewUser } from "./modalComponent/newUser";
 import { useFormContext } from "react-hook-form";
 import { UserRequest } from "../domain/userRequest";
-import moment from "moment";
+import { DateModalChild } from "./modalComponent/dateSearch";
 
 export const UserForm: FC = () => {
   const {
@@ -16,18 +16,8 @@ export const UserForm: FC = () => {
     setStatusEdit,
     statusFilter,
     setStatusFilter,
-    setDateNow,
   } = useContext(UsuariosContext) as IUsuariosContext;
   const { reset } = useFormContext<UserRequest>();
-
-  const today = new Date();
-  const date = today.setDate(today.getDate());
-  const defaultValue = new Date(date).toISOString().split("T")[0];
-
-  const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
-    const dateformat = moment(event.target.value).format('DD/MM/YYYY');
-    setDateNow(dateformat);
-  };
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const status = event.target.value;
@@ -55,20 +45,23 @@ export const UserForm: FC = () => {
   };
 
   return (
-    <div className="container flex flex-col shadow-sm shadow-slate-600 gap-1 p-2 rounded-md bg-stone-100 justify-center dark:bg-gray-600">
-      <div className="flex justify-center items-center gap-1">
-        <button
-          onClick={toggleModal}
-          className="border rounded-lg p-2 bg-blue-300 hover:bg-blue-400 dark:bg-slate-200 dark:hover:bg-slate-300"
-        >
-          Nuevo Usuario
-        </button>
-        <button
-          onClick={() => getUsers()}
-          className="border rounded-lg p-2 bg-blue-300 hover:bg-blue-400 dark:bg-slate-200 dark:hover:bg-slate-300"
-        >
-          Consultar
-        </button>
+    <div className="flex flex-col shadow-sm shadow-slate-600 gap-1 p-2 rounded-md bg-stone-100 justify-center dark:bg-gray-600">
+      <div className="flex justify-center items-center gap-1 tablet:flex-col laptop:flex-row sm:flex-col">
+        <div className="flex tablet:flex-col laptop:flex-row desktop:flex-row lg:flex-row lg:gap-2">
+          <button
+            onClick={toggleModal}
+            className="border rounded-lg p-2 bg-blue-300 hover:bg-blue-400 dark:bg-slate-200 dark:hover:bg-slate-300"
+          >
+            Nuevo Usuario
+          </button>
+          <button
+            onClick={() => getUsers()}
+            className="border rounded-lg p-2 bg-blue-300 hover:bg-blue-400 dark:bg-slate-200 dark:hover:bg-slate-300"
+          >
+            Consultar
+          </button>
+        </div>
+        <DateModalChild />
         <label className="flex flex-row items-center gap-1">
           <p className="dark:text-white">Estado</p>
           <select
@@ -87,16 +80,6 @@ export const UserForm: FC = () => {
             <option value="activo">Activos</option>
             <option value="inactivo">Inactivos</option>
           </select>
-        </label>
-        <label>
-          <input
-            className="text-center p-2 rounded-md"
-            id="dateRequired"
-            type="date"
-            name="dateRequired"
-            defaultValue={defaultValue}
-            onChange={handleDate}
-          />
         </label>
       </div>
 
