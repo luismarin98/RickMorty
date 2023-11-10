@@ -46,7 +46,7 @@ const ModalInsert: React.FC<ModalInsertRequest> = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block bg-white dark:bg-slate-500 p-4 rounded-lg">
+              <div className="inline-block bg-white dark:bg-slate-500 p-4 shadow-md shadow-gray-800 rounded-lg">
                 <Dialog.Title
                   as="h3"
                   className="text-lg flex justify-between font-medium leading-6 text-gray-900"

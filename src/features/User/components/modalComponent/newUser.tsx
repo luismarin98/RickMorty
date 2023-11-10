@@ -1,4 +1,4 @@
-import { FC, useContext, MouseEvent } from "react";
+import { FC, useContext, MouseEvent, useState, ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import { UserRequest } from "../../domain/userRequest";
 import UsuariosContext, {
@@ -9,11 +9,22 @@ export const NewUser: FC = () => {
   const { setDataSave, saveUser, setUserModal } = useContext(
     UsuariosContext
   ) as IUsuariosContext;
-  const { register, getValues, reset } = useFormContext<UserRequest>();
+  const [selectedOption, setSelectedOption] = useState<boolean>(false);
+  const { register, getValues, reset, setValue } =
+    useFormContext<UserRequest>();
+
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const status = event.target.value;
+    setSelectedOption(status === "activo" ? true : false);
+  };
+
+  //console.log(selectedOption)
 
   const handleBtnSave = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    setValue("status", selectedOption);
     const value = { ...getValues() };
+    console.log(value);
     if (!value) return null;
     setDataSave(value);
     saveUser();
@@ -46,6 +57,22 @@ export const NewUser: FC = () => {
           type="text"
           {...register("apellido")}
         />
+      </label>
+      <label className="flex flex=col gap-1 justify-center items-center p-1">
+        <p className="dark:text-white">Estado</p>
+        <select
+          className="group relative flex gap-x-6 rounded-lg p-2 hover:bg-gray-50"
+          id="status"
+          value={selectedOption ? 'activo' : 'inactivo'}
+          onChange={handleChange}
+        >
+          <option className="text-center" value="activo">
+            Activo
+          </option>
+          <option className="text-center" value="inactivo">
+            Inactivo
+          </option>
+        </select>
       </label>
       <button onClick={handleBtnSave}>Guardar</button>
     </div>

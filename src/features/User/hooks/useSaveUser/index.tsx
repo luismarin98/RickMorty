@@ -4,14 +4,13 @@ import { useState } from "react";
 
 const useSaveUser = () => {
   const [data, setDataSave] = useState<UserRequest>();
-//debugger
+  //debugger
   const saveUser = async () => {
-    //console.log(data);
-    const response = await axios.post(
-      `http://localhost:3000/users`,
-      { ...data }
-    );
+    const response = await axios.post(`http://localhost:3000/users`, {
+      ...data,
+    });
     if (response.status === 200) return alert("Usuario guardado con exito");
+    console.log(data);
   };
 
   return { saveUser, setDataSave };
