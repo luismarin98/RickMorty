@@ -5,27 +5,28 @@ import UsuariosContext, { IUsuariosContext } from "../providers/userProvider";
 
 interface BtnItems {
     nameBtn: string;
-    status: string;
+    statusEdit: boolean;
 }
 
 const BtnModal = (props: BtnItems) => {
-    const { setStatusEdit, setData, saveUser, setUserModal } = useContext(UsuariosContext) as IUsuariosContext;
+    const { setData, saveUser, setDataSave, setUserModal } = useContext(UsuariosContext) as IUsuariosContext;
     const { reset, getValues } = useFormContext<UserRequest>();
 
     const value = { ...getValues() };
 
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleClick = async (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if (!value) return null;
-        if (props.status === 'edit') {
+        if (props.statusEdit === true) {
             setData(value);
-        } else if (props.status === 'save') {
-            saveUser(value);
+        } else if (props.statusEdit === false) {
+            //console.log(value)
+            setDataSave(value);
+            saveUser();
         }
         reset();
         setUserModal(false)
     }
-    props.status === "edit" ? setStatusEdit(true) : setStatusEdit(false);
 
     return <button onClick={handleClick}>{props.nameBtn}</button>
 }

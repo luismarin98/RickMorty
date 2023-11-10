@@ -19,14 +19,14 @@ const TableList: FC = () => {
 
   const handleEdit = (params: UserRequest) => {
     setUserModal(!userModal);
-    editUser(params)
+    editUser(params);
     reset();
   };
 
   const handleDelete = (id: UserRequest) => {
     if (!id) return null;
     deleteUser(id);
-    getUsers()
+    getUsers();
   };
 
   return (
@@ -41,32 +41,33 @@ const TableList: FC = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            usuariosList.map((data) => (
-              <tr key={data.id}>
-                <th>{data.id}</th>
-                <th>{data.nombre}</th>
-                <th>{data.apellido}</th>
-                <th className="flex gap-1 justify-center">
-                  <button
-                    className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-red-600"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleDelete(data);
-                    }}
-                  >
-                    <span className="material-symbols-outlined">delete</span>
-                  </button>
-                  <button
-                    className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-green-600"
-                    onClick={() => handleEdit(data)}
-                  >
-                    <span className="material-symbols-outlined">edit</span>
-                  </button>
-                </th>
-              </tr>
-            ))
-          }
+          {usuariosList.map((data) => (
+            <tr key={data.id}>
+              <th>{data.id}</th>
+              <th>{data.nombre}</th>
+              <th>{data.apellido}</th>
+              <th className="flex gap-1 justify-center">
+                <button
+                  className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-red-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(data);
+                  }}
+                >
+                  <span className="material-symbols-outlined">delete</span>
+                </button>
+                <button
+                  className="p-1 bg-slate-300 rounded-lg flex items-center m-1 hover:bg-green-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleEdit(data);
+                  }}
+                >
+                  <span className="material-symbols-outlined">edit</span>
+                </button>
+              </th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, MouseEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import { CharacterResponse } from "../request/characterResponse";
 import SearchContext, { ISearchContext } from "../providers/searchProviders";
@@ -9,7 +9,8 @@ const FormSearchCharacter: FC = () => {
   const { getID } = useContext(SearchContext) as ISearchContext;
   const { register } = useFormContext();
 
-  const handleSearchID = () => {
+  const handleSearchID = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     const value = { ...getValues() };
     if (!value.id) return null;
     getID(value.id);
