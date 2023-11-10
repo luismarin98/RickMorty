@@ -5,6 +5,7 @@ import { EditUser } from "./modalComponent/editUser";
 import { NewUser } from "./modalComponent/newUser";
 import { useFormContext } from "react-hook-form";
 import { UserRequest } from "../domain/userRequest";
+import moment from "moment";
 
 export const UserForm: FC = () => {
   const {
@@ -15,11 +16,19 @@ export const UserForm: FC = () => {
     setStatusEdit,
     statusFilter,
     setStatusFilter,
+    setDateNow,
   } = useContext(UsuariosContext) as IUsuariosContext;
-  //const [selectedOption, setSelectedOption] = useState<boolean>(false);
   const { reset } = useFormContext<UserRequest>();
 
-  
+  const today = new Date();
+  const date = today.setDate(today.getDate());
+  const defaultValue = new Date(date).toISOString().split("T")[0];
+
+  const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
+    const dateformat = moment(event.target.value).format('DD/MM/YYYY');
+    setDateNow(dateformat);
+  };
+
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const status = event.target.value;
     switch (status) {
@@ -63,15 +72,31 @@ export const UserForm: FC = () => {
         <label className="flex flex-row items-center gap-1">
           <p className="dark:text-white">Estado</p>
           <select
-            className="group relative flex gap-x-6 rounded-lg p-2 hover:bg-gray-50"
+            className="rounded-md p-2 hover:bg-gray-50 text-center"
             id="status"
-            value={statusFilter ? 'activo' : statusFilter === null ? 'todos' : 'inactivo'}
+            value={
+              statusFilter
+                ? "activo"
+                : statusFilter === null
+                ? "todos"
+                : "inactivo"
+            }
             onChange={handleChange}
           >
             <option value="todos">Todos</option>
             <option value="activo">Activos</option>
             <option value="inactivo">Inactivos</option>
           </select>
+        </label>
+        <label>
+          <input
+            className="text-center p-2 rounded-md"
+            id="dateRequired"
+            type="date"
+            name="dateRequired"
+            defaultValue={defaultValue}
+            onChange={handleDate}
+          />
         </label>
       </div>
 

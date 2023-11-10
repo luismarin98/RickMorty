@@ -32,6 +32,8 @@ export interface IUsuariosContext {
   setIdUser: Dispatch<SetStateAction<string | null>>;
   statusFilter: boolean | null;
   setStatusFilter: Dispatch<SetStateAction<boolean | null>>;
+  dateNow: string | null;
+  setDateNow: Dispatch<SetStateAction<string | null>>;
 }
 
 const UsuariosContext = createContext({});
@@ -47,6 +49,7 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
   const [statusEdit, setStatusEdit] = useState(false);
   const [IdUser, setIdUser] = useState<string | null>("");
   const [statusFilter, setStatusFilter] = useState<boolean|null>(null);
+  const [dateNow, setDateNow] = useState<string | null>("");
 
   const storage: IUsuariosContext = {
     usuariosList: usuarios,
@@ -65,7 +68,9 @@ export const UsuariosProvider = ({ children }: { children: ReactNode }) => {
     IdUser,
     setIdUser,
     statusFilter,
-    setStatusFilter
+    setStatusFilter,
+    dateNow,
+    setDateNow
   };
 
   return (

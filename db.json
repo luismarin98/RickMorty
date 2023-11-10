@@ -1,22 +1,18 @@
 {
   "users": [
     {
-      "id": "256w456",
-      "nombre": "sdsfghs",
-      "apellido": "sdtghsfdth",
-      "status": false
+      "id": "7768490595",
+      "nombre": "luis",
+      "apellido": "marin",
+      "status": true,
+      "fecha": "11/10/2023"
     },
     {
-      "id": "DKDHDXO"
-    },
-    {
-      "id": "_1fJVVK"
-    },
-    {
-      "id": "1",
-      "nombre": "admin",
-      "apellido": "admin",
-      "status": true
+      "id": "97688661096",
+      "nombre": "a",
+      "apellido": "a",
+      "status": false,
+      "fecha": "11/10/2022"
     }
   ]
 }
