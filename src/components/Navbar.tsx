@@ -1,33 +1,85 @@
 import { Link } from 'react-router-dom';
-import logoIntuito from '../assets/logoIntuito.png';
+import React from "react";
 
-const routes = [
+import {
+    Navbar,
+    Collapse,
+    Typography,
+    IconButton,
+} from "@material-tailwind/react";
+
+const rutas = [
     {
-        path: '/name-character',
-        name: 'Nombres',
-    },
-    {
-        path: '/id-character',
-        name: 'ID',
-    },
-    {
-        path: '/all-character',
-        name: 'Todos los Personajes',
-    },
-    {
-        path: '/users',
         name: 'Usuarios',
+        path: '/usuarios',
     },
-];
+    {
+        name: 'RickMorty',
+        path: '/rick',
+    }
+]
 
-export default function Navbar() {
-    return <nav className='bg-cyan-300 dark:bg-slate-600 dark:text-white tablet:flex tablet:items-center tablet:justify-around tablet:flex-col tablet:gap-1 laptop:flex laptop:flex-row desktop:flex-row desktop:justify-around sm:flex sm:justify-center sm:items-center sm:flex-col sm:gap-2'>
-        <Link to='/' className='flex flex-row gap-2'>
-            <img src={logoIntuito} alt='logoIntuito' width={25} />
-            <p>Test Intuito</p>
-        </Link>
-        <ul className='flex gap-1 p-2'>
-            {routes.map((data) => <li key={data.name} ><Link className='hover:bg-cyan-400 p-1 rounded-sm' to={data.path}>{data.name}</Link></li>)}
-        </ul>
-    </nav>
+
+function NavList() {
+    return <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        {
+            rutas.map((data) => <Typography
+                key={data.name}
+                as="li"
+                variant="small"
+                color="blue-gray"
+                className="p-1 font-medium"
+            >
+                <Link className="flex items-center hover:text-blue-500 transition-colors" to={data.path}>{data.name}</Link>
+            </Typography>)
+        }
+    </ul>
 }
+
+const NavBar = () => {
+    const [openNav, setOpenNav] = React.useState<boolean>(false);
+
+    const handleWindowResize = () => window.innerWidth >= 960 && setOpenNav(false);
+
+    React.useEffect(() => {
+        window.addEventListener("resize", handleWindowResize);
+
+        return () => {
+            window.removeEventListener("resize", handleWindowResize);
+        };
+    }, []);
+
+    return (
+        <Navbar className="mx-auto max-w-screen-xl px-6 py-3">
+            <div className="flex items-center justify-between text-blue-gray-900">
+                <Link to='/'>
+                    <Typography as="a" variant="h6" className="mr-4 cursor-pointer py-1.5">Test Intuito</Typography>
+                </Link>
+                <div className="hidden lg:block">
+                    <NavList />
+                </div>
+                <IconButton
+                    variant="text"
+                    className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+                    ripple={false}
+                    onClick={() => setOpenNav(!openNav)}
+                >
+                    {openNav ? (
+                        <span className="material-symbols-outlined">
+                            close
+                        </span>
+                    ) : (
+                        <span className="material-symbols-outlined">
+                            menu
+                        </span>
+                    )}
+                </IconButton>
+            </div>
+            <Collapse open={openNav}>
+                <NavList />
+            </Collapse>
+        </Navbar>
+    )
+}
+
+export default NavBar;

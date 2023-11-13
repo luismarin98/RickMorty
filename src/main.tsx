@@ -1,21 +1,18 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AllCharacters, IDCharacter, NameCharacter, Users, } from './routes';
-import Navbar from './components/Navbar';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import NavBar from './components/navbar.tsx';
+import { ThemeProvider } from "@material-tailwind/react";
 
-createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path='/name-character' element={<NameCharacter />} />
-        <Route path='/all-character' element={<AllCharacters />} />
-        <Route path='/id-character' element={<IDCharacter />} />
-        <Route path='/users' element={<Users />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <NavBar />
+        <App />
+      </Router>
+    </ThemeProvider>
   </React.StrictMode>,
 )
-
